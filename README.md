@@ -1,67 +1,71 @@
-Stock Market Simulation Game
+Stock Market Simulation
 
 Overview
+The Stock Market Simulation is a console-based application built using C++. It allows users to simulate buying and selling stocks while managing their portfolios. The application uses advanced algorithms such as Dynamic Programming (DP), Fenwick Trees, and Monotonic Stacks to calculate the maximum profit achievable by trading stocks.
 
-This is an interactive Stock Market Simulation Game developed using C++, utilizing advanced algorithms such as Dynamic Programming (DP), Fenwick Trees, and Monotonic Stacks for maximum profit calculation. The game allows users to buy and sell stocks, manage their portfolios, and track transaction histories.
+Key Features
 
-The game simulates real-time stock pricing and enables users to make intelligent decisions based on the maximum profit they can achieve using different algorithms.
+Dynamic Stock Pricing: Stock prices change dynamically as the simulation progresses.
 
-Features
-Dynamic Stock Pricing: Real-time stock prices that fluctuate during the game.
-User Registration & Transaction: Users can register, buy, and sell stocks.
-Profit Calculation Algorithms:
-Dynamic Programming for maximum profit calculation.
-Fenwick Trees for efficient range queries and updates.
-Monotonic Stacks to maximize profit in an optimal time complexity.
-Portfolio Tracking: Users can track their transaction history and manage their portfolio effectively.
-Console Interface: A user-friendly console interface to interact with the game.
-Algorithms Used
-Dynamic Programming (DP): Used to find the maximum profit by calculating the difference between the minimum and maximum stock prices.
-Fenwick Tree: A data structure used for efficient range queries and updates to calculate maximum profit.
-Monotonic Stack: Used to calculate the best stock buy and sell points in O(n) time.
-Technologies
-C++
-Fenwick Trees
-Dynamic Programming
-Monotonic Stacks
-How to Play
-Register User: Upon starting the game, you can create a user account.
-Buy Stocks: Users can buy stocks at dynamic prices.
-Sell Stocks: Sell stocks at the price they were bought.
-Profit Calculation: The game uses various algorithms to calculate the best time to buy and sell for maximum profit.
-View Portfolio: Users can view their stock portfolio and transaction history.
-Instructions to Run
-Clone the repository:
+User Registration & Transaction: Users can register, buy stocks, and sell stocks through the system.
+Profit Calculation:
 
-bash
-Copy code
-git clone https://github.com/yourusername/Stock-Market-Simulation-Game.git
-Navigate to the project directory:
+Dynamic Programming (DP): Calculates the maximum profit based on stock price fluctuations.
+Fenwick Trees: Utilized for efficient range queries and updates during price fluctuations.
+Monotonic Stacks: Helps determine optimal buy and sell points for maximizing profit.
+Portfolio Tracking: Users can view and manage their stock portfolio and transaction history.
+Console Interface: An interactive and user-friendly interface for managing stock transactions.
 
-bash
-Copy code
-cd Stock-Market-Simulation-Game
-Compile the C++ code:
+Algorithms Implemented
+Dynamic Programming (DP): Used to find the maximum profit by calculating the difference between the lowest and highest stock prices over time.
+Fenwick Tree: A data structure that supports efficient updates and queries, helping to calculate profit in a more optimized manner.
+Monotonic Stacks: Ensures that the buy and sell points are identified with O(n) time complexity, making the process faster and more efficient.
+
+Technologies Used
+C++: The core programming language used for the implementation.
+Fenwick Trees: For efficient range queries and updates.
+Dynamic Programming: For calculating maximum profits.
+Monotonic Stacks: To maximize profit by optimizing stock buy and sell decisions.
+
+How to Use
+
+Register a User: Start by creating a user account to begin trading.
+Buy Stocks: Purchase stocks at their current dynamic price.
+Sell Stocks: Sell the stocks when the price is higher than the buying price to make a profit.
+Profit Calculation: The simulation uses DP, Fenwick Trees, and Monotonic Stacks to find the best moments for buying and selling.
+View Portfolio: Users can check their portfolio and transaction history.
+Steps to Run the Simulation
+Clone the Repository:
 
 bash
 Copy code
-g++ -o stock_market_simulation main.cpp
-Run the game:
+git clone https://github.com/yourusername/Stock-Market-Simulation.git
+Navigate to the Project Directory:
 
 bash
 Copy code
-./stock_market_simulation
-Example Usage
-Register a user.
+cd Stock-Market-Simulation
+Compile the C++ Code:
+
+bash
+Copy code
+g++ -o stock_simulation main.cpp
+Run the Simulation:
+
+bash
+Copy code
+./stock_simulation
+Example Flow
+Register a new user in the system.
 Buy stocks at a low price.
-Sell stocks at a higher price to make a profit.
-View your transaction history and portfolio.
-Optimizations
-Profit Calculation Optimization: Reduced computation time by 30% through advanced algorithmic optimizations (Fenwick Tree and Monotonic Stacks).
-Scalability: Handles up to 100+ users simultaneously.
+Sell stocks at a higher price to gain profit.
+View the portfolio to track the stock transactions and overall profit.
+Optimization
+Efficient Profit Calculation: 30% faster profit calculations using Fenwick Trees and Monotonic Stacks.
+Scalability: The system can handle multiple users and efficiently simulate stock transactions in a large environment.
 Contributing
-Feel free to fork the repository and contribute to improvements, bug fixes, or feature enhancements. You can open an issue or create a pull request.
+You are welcome to fork this repository, report issues, or submit pull requests to contribute to the project. Contributions are always appreciated.
 
 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
