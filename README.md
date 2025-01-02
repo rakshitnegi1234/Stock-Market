@@ -1,8 +1,7 @@
-
-Here's a sample README.md for your Stock Market Simulation Game project:
-
 Stock Market Simulation Game
+
 Overview
+
 This is an interactive Stock Market Simulation Game developed using C++, utilizing advanced algorithms such as Dynamic Programming (DP), Fenwick Trees, and Monotonic Stacks for maximum profit calculation. The game allows users to buy and sell stocks, manage their portfolios, and track transaction histories.
 
 The game simulates real-time stock pricing and enables users to make intelligent decisions based on the maximum profit they can achieve using different algorithms.
