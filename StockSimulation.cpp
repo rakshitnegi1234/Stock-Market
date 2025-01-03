@@ -42,7 +42,6 @@ public:
 
     Stock() {}
 
-    // Method to accept stock prices from user
     void setStockPrices() {
         int n;
         cout << "Enter number of stock prices: ";
@@ -54,10 +53,9 @@ public:
         }
     }
 
-    // Dynamic Programming approach to find maximum profit with buy and sell indices
     pair<int, pair<int, int>> getMaxProfitDP() {
         int n = prices.size();
-        if (n == 0) return {0, {-1, -1}};  // No profit if no prices
+        if (n == 0) return {0, {-1, -1}};
 
         int min_price = prices[0], max_profit = 0;
         int buy_index = 0, sell_index = 0;
@@ -76,7 +74,6 @@ public:
         return {max_profit, {buy_index, sell_index}};
     }
 
-    // Fenwick Tree approach to find maximum profit with buy and sell indices
     pair<int, pair<int, int>> getMaxProfitFenwick() {
         int n = prices.size();
         FenwickTree fenwick(n);
@@ -84,15 +81,14 @@ public:
         int buy_index = -1, sell_index = -1;
 
         for (int i = 0; i < n; i++) {
-            int max_price_before = fenwick.query(i);  // Query for the best price before i
+            int max_price_before = fenwick.query(i);
             if (prices[i] - max_price_before > max_profit) {
                 max_profit = prices[i] - max_price_before;
                 sell_index = i;
             }
-            fenwick.update(i + 1, prices[i]);  // Update Fenwick tree with the current price
+            fenwick.update(i + 1, prices[i]);
         }
 
-        // Find the buy index by searching for the highest price before the sell index
         for (int i = sell_index - 1; i >= 0; i--) {
             if (prices[i] == prices[sell_index] - max_profit) {
                 buy_index = i;
@@ -103,7 +99,6 @@ public:
         return {max_profit, {buy_index, sell_index}};
     }
 
-    // Stack approach (Monotonic Stack) to find maximum profit with buy and sell indices
     pair<int, pair<int, int>> getMaxProfitStack() {
         int n = prices.size();
         stack<int> s;
@@ -155,10 +150,9 @@ public:
     }
 
     void makeSellAction(int stockPrice) {
-        // Sell action, assumes the stock is sold at the last bought price
         for (int i = transactionHistory.size() - 1; i >= 0; --i) {
             if (transactionHistory[i].isBuy && transactionHistory[i].price <= stockPrice) {
-                transactionHistory.push_back(Transaction(stockPrice, false));  // Record the sell action
+                transactionHistory.push_back(Transaction(stockPrice, false));
                 break;
             }
         }
@@ -179,6 +173,18 @@ public:
             cout << (t.isBuy ? "Bought" : "Sold") << " at " << t.price << "\n";
         }
     }
+
+    void calculateNetProfit() {
+        int profit = 0;
+        for (int i = 0; i < transactionHistory.size(); ++i) {
+            if (!transactionHistory[i].isBuy) {
+                profit += transactionHistory[i].price;
+            } else {
+                profit -= transactionHistory[i].price;
+            }
+        }
+        cout << username << "'s Net Profit/Loss: " << profit << "\n";
+    }
 };
 
 class StockMarketSystem {
@@ -192,7 +198,15 @@ public:
         string username;
         cout << "Enter username to register: ";
         cin >> username;
-        users[username] = User(username);
+        cout << "Do you agree to our company policies? (yes/no): ";
+        string agreement;
+        cin >> agreement;
+        if (agreement == "yes") {
+            users[username] = User(username);
+            cout << "User " << username << " registered successfully!\n";
+        } else {
+            cout << "Registration failed. You must agree to company policies.\n";
+        }
     }
 
     void makeBuyAction(string username) {
@@ -240,12 +254,19 @@ public:
         }
     }
 
+    void displayNetProfit(string username) {
+        if (users.find(username) != users.end()) {
+            users[username].calculateNetProfit();
+        }
+    }
+
     void run() {
+        cout << "Welcome to [Your Company Name] Stock Market System!\n";
         stock.setStockPrices();
 
         int choice;
         while (true) {
-            cout << "\n1. Register User\n2. Buy Stock\n3. Sell Stock\n4. Calculate Profit\n5. Display Portfolio\n6. Display Transaction History\n7. Exit\n";
+            cout << "\n1. Register User\n2. Buy Stock\n3. Sell Stock\n4. Calculate Profit\n5. Display Portfolio\n6. Display Transaction History\n7. Display Net Profit\n8. Exit\n";
             cout << "Enter choice: ";
             cin >> choice;
 
@@ -277,18 +298,24 @@ public:
                     cin >> username;
                     displayTransactionHistory(username);
                     break;
-                case 7:
-                    cout << "Exiting the system.\n";
+                      case 7:
+                    cout << "Enter username: ";
+                    cin >> username;
+                    displayNetProfit(username);
+                    break;
+                case 8:
+                    cout << "Exiting the system. Thank you for using the Stock Market System!\n";
                     return;
                 default:
-                    cout << "Invalid choice, try again.\n";
+                    cout << "Invalid choice! Please enter a valid option.\n";
+                    break;
             }
         }
     }
 };
 
 int main() {
-    StockMarketSystem marketSystem;
-    marketSystem.run();
+    StockMarketSystem system;
+    system.run();
     return 0;
 }
